@@ -6,3 +6,9 @@ reddit = praw.Reddit(client_id='cbEXEwIUsqosaw',
                      username = 'joebot69',
                      password = 'Joeis69dumb',
                      user_agent = 'joebot69 by /u/Joe')
+
+subbreddit = reddit.subbreddit('askreddit')
+
+for comment in subbreddit.stream.comment(){
+    print(comment_karma)
+    }
