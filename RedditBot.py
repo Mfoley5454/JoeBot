@@ -9,6 +9,6 @@ reddit = praw.Reddit(client_id='cbEXEwIUsqosaw',
 
 subbreddit = reddit.subbreddit('askreddit')
 
-for comment in subbreddit.stream.comment(){
+for comment in subbreddit.stream.comment():
     print(comment_karma)
-    }
+    
