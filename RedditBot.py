@@ -1,4 +1,5 @@
 import praw
+import modelMaker
 from praw.models import MoreComments
 
 
@@ -9,7 +10,7 @@ from praw.models import MoreComments
 #DONE a system to remove punctuation from strings except for '.'
 #TODO create a function system of bigrams and trigrams with a strong enough
 #^^^^ data pool to support accurate findings
-#TODO find best way to store data in database. (Storing bigrams/trigrams with occurances?)
+#TODO find best way to store data in database. (Storing bigrams/trigrams with occurances?)(Mongo?)
 #TODO find a rest API to implement to support database (Flask???)
 #TODO thing below is pretty slow. Must be some way to speed this part up
 #TODO find a home for this list of ideas
@@ -42,8 +43,7 @@ for submission in reddit.subreddit("writingprompts").hot(limit=10):
                     comment.body = comment.body.replace(char, ' ')
                 else:
                     comment.body = comment.body.replace(char, '')
-            dataFromCommentList = comment.body.split()
-            wordCount += len(dataFromCommentList)
+                print(modelMaker.createBigrams(comment.body))
 #Create a module for language modelling to clean up this area of code
 #Leave the modelling to another file.
 #Have this files only concern being normallizing data from reddit
