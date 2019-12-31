@@ -1,7 +1,8 @@
 import praw
 import modelMaker
 from praw.models import MoreComments
-
+import requests
+import json
 
 #               CURRENT THINGS TO WORK ON
 #Currently reads the comments of a subreddit (writing prompts)
@@ -15,7 +16,8 @@ from praw.models import MoreComments
 #TODO thing below is pretty slow. Must be some way to speed this part up
 #TODO find a home for this list of ideas
 
-
+response = requests.get("http://192.168.1.149:3000/botDB/RedditPosts")
+print(response.status_code)
 #Subreddits to be looked at based on their posts
 subRedditList = ['todayilearned','copypasta','tifu']
 #Subreddits to be looked at based on the comments of their posts
@@ -43,7 +45,7 @@ for submission in reddit.subreddit("writingprompts").hot(limit=10):
                     comment.body = comment.body.replace(char, ' ')
                 else:
                     comment.body = comment.body.replace(char, '')
-                print(modelMaker.createBigrams(comment.body))
+#                print(modelMaker.createBigrams(comment.body))
 #Create a module for language modelling to clean up this area of code
 #Leave the modelling to another file.
 #Have this files only concern being normallizing data from reddit
